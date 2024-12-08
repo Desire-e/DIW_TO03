@@ -432,7 +432,7 @@
     display: flex;
     align-items: center;
 
-    width: 100%; /*ocupa el 100% de su padre (header)*/
+    width: 95%; /*ocupa el 95% de su padre (header)*/
     height: 40%; /*ocupa el 40% de su padre (header)*/
     border-radius: 27px;
     background-color: #E4DFCE;
