@@ -8,6 +8,13 @@
     
 
     <body>
+        <div id="statusMessage" role="status" aria-live="polite">
+            <!-- Los mensajes de estado se actualizarán dinámicamente -->
+            <!-- destinado a contener mensajes como "Cargando resultados..." o "Carousel actualizado".
+            Este uso es útil para interfaces dinámicas donde se necesita notificar cambios sin redibujar la página. -->
+            <!-- aria-live="polite" Permite que los lectores de pantalla anuncien los mensajes cuando cambian, pero de 
+            forma no intrusiva, dejando que el usuario termine de escuchar cualquier otro contenido. -->
+        </div>
         <div class="container">
 
             <!--HEADER-->
@@ -24,13 +31,7 @@
                     </button>
                 </div>
 
-                <div id="statusMessage" role="status" aria-live="polite">
-                    <!-- Los mensajes de estado se actualizarán dinámicamente -->
-                    <!-- destinado a contener mensajes como "Cargando resultados..." o "Carousel actualizado".
-                    Este uso es útil para interfaces dinámicas donde se necesita notificar cambios sin redibujar la página. -->
-                    <!-- aria-live="polite" Permite que los lectores de pantalla anuncien los mensajes cuando cambian, pero de 
-                    forma no intrusiva, dejando que el usuario termine de escuchar cualquier otro contenido. -->
-                </div>
+
                 
                 <!--Navegador-->
                 <nav>
@@ -274,6 +275,27 @@
         <!-- Mensaje de role="status" cuando carga la página -->
         <script>
             document.getElementById('statusMessage').textContent = "Cargando resultados...";
+        </script>
+        <script>
+            // Mostrar y ocultar mensajes de estado
+            function showStatusMessage(message) {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = message;
+            statusMessage.style.display = 'block';
+            }
+
+            function hideStatusMessage() {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.style.display = 'none';
+            }
+
+            // Simulación de carga
+            document.addEventListener('DOMContentLoaded', () => {
+            showStatusMessage('Cargando resultados...');
+            setTimeout(() => {
+                hideStatusMessage();
+            }, 3000); // 3 segundos
+            });
         </script>
 
 
