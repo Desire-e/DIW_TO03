@@ -303,8 +303,17 @@
 
 
 
+  /* Espaciado de letras para títulos y párrafos */
+  h1, h2, h3, h4, h5, h6, .p1-bold, .p2-bold, .p1-semibold, .p2-semibold, .p3-semibold, .p2-reg, .p3-reg, .p3-light {
+    letter-spacing: 0.05em; 
+  }
+
+
+
+
   .container{
-    max-width:1196px;
+    /* Ajuste del tamaño de contenedores utilizando unidades em */
+    max-width: 75em; /* 1em ≈ 16px, equivalente a 1196px */
     margin:auto;
     display:flex;           
     flex-direction: column;
