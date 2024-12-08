@@ -1,9 +1,4 @@
-* {
-    margin:0px;
-    padding:0px;
-  }
 
-  
                                                   /*FUENTE INTER*/
 
 /* inter-latin-100-normal THIN*/
@@ -186,7 +181,6 @@
   }
   h6{
     font-size: 1.7em;
-    color:#000;
     font-family: 'Abhaya Libre';
     font-style: normal;
     font-weight: 800;
@@ -282,13 +276,19 @@
 
 
 
+  * {
+    margin:0px;
+    padding:0px;
+  }
+
+
+
   body { 
     background-color:#fff;
     display:flex;             /*FLEXBOX*/
     flex-direction: column;
-
     justify-items: center; /*alineación de los elemento flex en el eje x*/
-    align-items:center;    /*alineación de los elementos hijos de un flex en el eje y (se alinean dentro del padre, 
+    align-items:stretch;    /*alineación de los elementos hijos de un flex en el eje y (se alinean dentro del padre, 
                               no en función de la posición normal)*/
     
     /*p3-reg por defecto*/
@@ -296,6 +296,9 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1em;
+
+    overflow-x: hidden;  
+
   }
 
 
@@ -306,8 +309,8 @@
     display:flex;           
     flex-direction: column;
     justify-content: center;
-    /* border: rgb(57, 130, 114) 2px solid; */
   }
+
 
   a:link {
     color:#06768d;
@@ -322,23 +325,41 @@
     color: #3a0571; /* Cambia a un tono diferente al hacer clic */
   }
 
+
+  /*links para el header*/
+  header a:link {
+    color:#000;
+    text-decoration: none;
+    transition: color 0.3s;
+
+  }
+  header a:visited {
+    color:#000;
+    text-decoration: none;
+  }
+  header a:hover {
+    color:#776B40;
+    text-decoration: none;
+  }
+  header a:active {
+    color:#000;
+    text-decoration: none;
+  }
+
   
 
-
   .hero {
-    margin: auto auto 500px auto;
+    /* margin: auto auto 500px auto; */
     min-height: 680px;
     width: 100%;
     background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0)), 
-    url("StockCake-Library\ Reading\ Session_1728075900.jpg");
+    url("Imagenes/StockCake-Library\ Reading\ Session_1728075900.jpg");
     background-repeat: no-repeat;
     background-position: top;
 
     display:flex;    
     flex-direction: column;
     
-
-    /* border: red 2px solid; */
   }
 
   .h1-hero {
@@ -350,23 +371,21 @@
 
 
 
-  /* CABECERA */
+  /*-------------------------------------------------CABECERA-------------------------------------------------*/
   header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap:nowrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    justify-content: space-between;
     align-items: center;
-    height: 129px;
-    width: 100%;    
-    margin: 0; 
 
+    height: 129px;   
+    width: 1196px;
+    margin: 0; 
     background-color:#fff;
     position:sticky;
     top:0;
     z-index: 10; /* Asegura que el header esté por encima del sombreado */
-
-    /* border: green 2px solid; */
   }
   header::after { /* Gradiente de sombreado debajo del header */
     content: "";
@@ -378,115 +397,169 @@
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
     pointer-events: none; /* Permite que los elementos debajo sean interactuables */
   }
-  .header-content{
-    display: flex;
-    flex-direction: row;
-    flex-wrap:nowrap;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1196px;
-    width: 100%;
-    margin: 0 auto;
 
-    /* border: rgb(0, 102, 255) 2px solid; */
-  }
   .header-logo {
-    max-width: 115px;
-
-    /* border: goldenrod 2px solid; */
+    grid-column-start: 1;
+    width: 115px;
   }
 
-  header nav {
+  /*Header responsive*/
+  @media(max-width:1000px){
+    header {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-template-rows: auto;
+      justify-content: space-between;
+      align-items: center;
+  
+      height: 250px;/*m*/
+    }
+  
+    .header-logo {
+      grid-column-start: 1;
+      width: 170px;
+      margin: 0 0 0 10px;
+    }
+
+  }
+
+
+  /*BARRA DE BÚSQUEDA*/
+  .search-container {     /* Contenedor de la barra de búsqueda */
+    grid-column-start: 2;
+    
     display: flex;
-    flex-direction: row;
+    align-items: center;
+
+    width: 100%; /*ocupa el 100% de su padre (header)*/
+    height: 40%; /*ocupa el 40% de su padre (header)*/
+    border-radius: 27px;
+    background-color: #E4DFCE;
+    
+    padding:0 15px;
+  }
+
+  .search-input {     /* Zona del input de búsqueda */
+    flex: 1;
+    border: none;
+    outline: none;      /* elimina el contorno en algunos elementos interactivos (<input>, <button>, <a>) al estar enfocados o seleccionados.*/
+    font-size: 20px;
+    background-color: #E4DFCE;
+  }
+  .search-input::placeholder {    /*Contiene txt buscar*/
+    color: #000000;
+    opacity: 1;           /* Asegura que el color sea completamente visible */
+  }
+
+  .search-button {      /* Botón de búsqueda */
+    border: none;
+    background-color: #E4DFCE;
+    cursor: pointer;
+    height: 20px;
+  }
+
+  /*Barra de búsqueda responsive*/
+  @media (max-width: 1000px) {
+
+    .search-container {     /* Contenedor de la barra de búsqueda */
+      grid-column-start: 2;
+      display: flex;
+      align-items: center;
+
+      width: 100%;/*m*/
+      height: 40%;/*m*/
+      border-radius: 70px;/*m*/
+      padding:0 40px;/*m*/
+    }
+  
+    .search-input {
+      flex: 1;
+      font-size: 40px;/*m*/
+    }
+
+    .search-button {
+      height: 40px;
+    }
+  }
+
+
+  /*NAVEGADOR*/
+  header nav {
+    grid-column-start: 3;
+
+    display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap; /*Si hay elementos de más, no se aplian los bloques sobrantes bajo los de arriba, sino que se ajustan las 
-                        dimensiones de los bloques al tamaño disponible*/
     align-items: center;  /*centrar verticalmente, de arriba a abajo*/
     background-color:#fff;
-
-    /* border: goldenrod 2px solid; */
   }
 
   .nav-content {
     margin: 0px 20px;
   }
 
-  .search-container {     /* Contenedor de la barra de búsqueda */
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 346px;
-    border-radius: 20px;
-    /* border: goldenrod 2px solid; */
-
-  }
-
-  .search-input {   /* Zona del input de búsqueda */
-    flex: 1;
-    padding: 8px 20px;
-    height: 20px;
-    border: none;
-    outline: none;      /* para eliminar el contorno visual que rodea algunos elementos interactivos (<input>, <button>, <a>) 
-                          cuando están enfocados o seleccionados.*/
-    font-size: 16px;
-    border-radius: 20px 0 0 20px;
-    background-color: #E4DFCE;
-  }
-
-  .search-input::placeholder {
-    color: #000000;
-    opacity: 1;     /* Asegura que el color sea completamente visible */
-  }
-
-  .search-button {      /* Botón de búsqueda */
-    padding: 9px 20px;
-    height: 37px;
-    border: none;
-    background-color: #E4DFCE;
-    border-radius: 0 20px 20px 0;
+  /*Navegador responsive*/
+  .hamburger {
+    display: none;  /*En principio oculto*/
     cursor: pointer;
-    transition: background-color 0.3s ease;
   }
 
-  /* Responsividad de barra buscadora*/
-  @media (max-width: 480px) {
-    .search-container {
-        max-width: 80%;
+  @media (max-width: 1000px) {
+    header nav {
+        display: none;    /*en principio info navegador oculta*/
+        flex-direction: column;   /*dispuestos en columna*/
+        position: absolute;
+        top: 250px;
+        right: 0px;
+
+        padding: 50px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .search-input {
-        font-size: 14px;
+    header nav.active {
+        display: flex;    /*info de navegador pasa a visible (js)*/
     }
 
-    .search-button {
-        font-size: 14px;
-        padding: 8px 12px;
+    .hamburger {
+        display: flex;  /*hamburguesa visible*/
+        height: 140px;
+    }
+
+    .nav-content {
+      margin: 0px 20px;
+      font-size: 4.5em;
+      margin: 0 0 50px 0;
     }
   }
-  
 
 
-  /* CUERPO DE LAS SECCIONES */
+  /*---------------------------------------------CUERPO SECCIONES---------------------------------------------*/
   .secciones {             
     max-width: 1196px;
+    width:100%;
     max-height: 100%;
     background-color: #E4DFCE;
-    margin: auto ;
-    padding: 85px 0px 85px 0px;
+    margin: 500px 0 90px 0;
+    padding: 85px 0px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
 
 
   /* SECCIÓN BEST SELLER */
   .cuerpo-bs {
-    max-width: 1099px;
+    /*Puedes cambiar a
+    max-width:1099px;
+    width:100%;
+    */
+    width: 90%;
     max-height: 100%;
     display:flex;    
     flex-direction: column;
     align-items: center;
-    margin: 0 48px 200px 48px;
+    margin: auto auto 200px auto;
   }
 
   hr {
@@ -500,35 +573,64 @@
   }
 
   .libros-bs {
-    display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
+    display:grid;
+    grid-template-columns: 5% 90% 5%;  
+    grid-template-rows: auto;  
     align-items: center;
     justify-content:space-between;
 
     background-color: #fff;
     width: 100%;
-    height: 505px;
+    max-height: 505px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 30px;
     margin: 0px 0px 50px 0px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+  }
+
+  .bs-flecha-izq{
+    grid-column-start: 1;
+
+    /* padding: 10px 15px; */
+    cursor: pointer;
+    /* position: absolute; */
+    border: none;
+    outline: none;
+    border-style: none;
+    background-color: #fff;
+  }
+
+  .bs-flecha-der{
+    grid-column-start: 3;
+
+    /* padding: 10px 15px; */
+    cursor: pointer;
+    /* position: absolute; */
+    border: none;
+    outline: none;
+    border-style: none;
+    background-color: #fff;
   }
   
   .portadas-bs {
+    grid-column-start: 2;
     display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: space-around;
+
   }
 
   .portadas-bs img{
-    width: 264px;
-    height: 352px;
-    margin: 0 40px 0 40px;
+    width: 264px; 
   }
 
 
 
-  /* SECCIÓN 1 (AUTORES) */
-  .cuerpo-sec1{
+  /* OTRAS SECCIONES (AUTORES, EBOOKS) */
+  .cuerpo-sec{
     max-width: 100%;
     max-height: 390px;
     display:flex;
@@ -537,146 +639,139 @@
     margin: 0 0 100px 0;/* margen de abajo hasta otra seccion*/
   }
 
-  .cuerpo-sec1 h3 {
+  .cuerpo-sec h3 {
     margin: 0 0 37px 0;
   }
 
-  .libros-sec1{
-    padding: 34px 0;
-    background-color: #fff;
-  
-    display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content:space-between;
-
+  .libros-sec{
+    display:grid;
+    grid-template-columns: 5% 90% 5%;  
+    grid-template-rows: auto;  
     width: 100%;
-    height: 505px;
+    max-height: 505px;
+    height: 100%;
+    box-sizing: border-box;
+
+    padding: 30px 0;
+    background-color: #fff;
+    align-items: center;
+    /* justify-content:space-between; */
+
   }
 
-  .portadas-sec1{
+  .portadas-sec{
+    grid-column-start: 2;
     display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
+    /* align-items: center; */
+
+    /* flex-wrap: nowrap; */
     justify-content:space-between;
   }
 
-  .info-sec1{
+  .sec-flecha-izq{
+    grid-column-start: 1;
+
+    /* padding: 10px 15px; */
+    cursor: pointer;
+    /* position: absolute; */
+    border: none;
+    outline: none;
+    border-style: none;
+    background-color: #fff;
+  }
+
+  .sec-flecha-der{
+    grid-column-start: 3;
+
+    /* padding: 10px 15px; */
+    cursor: pointer;
+    /* position: absolute; */
+    border: none;
+    outline: none;
+    border-style: none;
+    background-color: #fff;
+  }
+
+  .item-sec{/*ITEM 1*/
     display:flex;    
     flex-direction: column;
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
   }
 
-  .portadas-sec1 .info-sec1 {
-    width:164px;
-    margin:0 30px;
+  .item-sec img {
+    max-width:164px;
+    width: 100%;
+    /* margin:0 30px; */
   }
 
-  .info-sec1 p, h5{
+  .item-sec p, h5{/*INFORMACION*/
     align-self: center;
   }
 
 
 
-   /* SECCIÓN 2 (AUTORES) */
-  .cuerpo-sec2 {
-    max-width: 100%;
-    max-height: 390px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0 100px 0;/* margen de abajo hasta otra seccion*/
-  }
-  .cuerpo-sec2 h3 {
-    margin: 0 0 37px 0;
-  }
-
-  .libros-sec2 {
-    padding: 34px 0;
-    background-color: #fff;
-  
-    display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content:space-between;
-
-    width: 100%;
-    height: 505px;
-  }
-
-  .portadas-sec2 {
-    display:flex;    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content:space-between;
-  }
-
-  .info-sec2 {
-    display:flex;    
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-
-  .portadas-sec2 .info-sec2 {
-    width:164px;
-    margin:0 30px;
-  }
-
-  .info-sec2 p, h5{
-    align-self: center;
-  }
-
-
-
-  /*FOOTER */
+  /*--------------------------------------------------FOOTER--------------------------------------------------*/
   footer{
-    width: 1196px;
+    
     max-height: 350px;
+    height: 100%;
+    width: 1196px;/*si lo modifico, se cambia el tamaño de .container*/
     background-color: #fff;
-    margin: 90px auto 0 auto;
-
+    /* margin: 90px 0 0 0; */
     display:flex;    
     flex-direction: column;
   }
 
   .footer-superior{
-    max-height: 281px;
-    background-color: #fff;
-    padding: 41px 150px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    justify-content: space-between;
+    align-items: center;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    max-height: 281px;
+    height:100%;
+    background-color: #fff;
+    padding: 40px 150px; 
+  }
+
+  .footer-contacto{
+    grid-column-start: 1;
+  }
+  .modo-contacto{
+    margin: 10px;
+  }
+  .modo-contacto svg{
+    margin:0 5px;
+  }
+
+  footer div img {  /*logotipo*/
+    max-width: 198px;
+    grid-column-start: 2;
+  }
+
+
+  .footer-inferior {
+    background-color: #776B40;
+    color: #fff;
+    padding: 20px 200px;
+
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-template-rows: auto;
     justify-content: space-between;
     align-items: center;
   }
 
-  footer div img {
-    max-width: 198px;
-  }
-
-  .footer-inferior {
-    max-width: 1196px;
-    max-height: 69px;
-    background-color: #776B40;
-    color: #fff;
-
-    padding: 17px 150px;
-
+  .footer-redes{
+    grid-column-start: 1;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+    justify-content: space-between;
+
   }
 
-  .footer-redes svg{
-    margin: 0 40px;  
-  }
-
-  .footer-inferior span {
-    margin: 0 0 0 400px ;
+  .footer-inferior span {   /*copyright*/
+    grid-column-start: 2;
   }
 
 
