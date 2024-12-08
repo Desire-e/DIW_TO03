@@ -340,14 +340,11 @@
   a:active {
     color: #3a0571; /* Cambia a un tono diferente al hacer clic */
   }
-
-
   /*links para el header*/
   header a:link {
     color:#000;
     text-decoration: none;
     transition: color 0.3s;
-
   }
   header a:visited {
     color:#000;
@@ -359,6 +356,23 @@
   }
   header a:active {
     color:#000;
+    text-decoration: none;
+  }
+  /*links para el footer*/
+  footer a:link {
+    color:#ffffff;
+    text-decoration: none;
+  }
+  footer a:visited {
+    color:#ffffff;
+    text-decoration: none;
+  }
+  footer a:hover {
+    color:#ffffff;
+    text-decoration: none;
+  }
+  footer a:active {
+    color:#ffffff;
     text-decoration: none;
   }
 
